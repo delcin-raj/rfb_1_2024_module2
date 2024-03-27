@@ -37,3 +37,5 @@ impl<T, E> MResult<T, E> {
         todo!()
     }
 }
+
+// Add unit tests below

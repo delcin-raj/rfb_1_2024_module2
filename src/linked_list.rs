@@ -14,6 +14,8 @@ pub enum List<T> {
     }
 }
 
+// [1,2,3,4]
+
 // The List we have defined above is a recursive data structure, try to use recursion
 // to implement the methods below
 
@@ -29,13 +31,14 @@ impl <T> List<T> {
         todo!()
     }
 
-    pub fn push(self, value: T) -> List<T> {
+    pub fn prepend(self, value: T) -> List<T> {
         todo!()
     }
 
     // Create List of items of type T from an Iterator of type T
     // Make sure that the order of the incoming iterator are preserved
-    pub fn from_iterator(iter: impl Iterator<Item = T>) -> List<T> {
+    // HINT: DoubleEndedIterator have a method called rev()
+    pub fn from_iterator(iter: impl DoubleEndedIterator<Item = T>) -> List<T> {
         todo!()
     }
 
@@ -54,6 +57,8 @@ impl <T> List<T> {
     // Implement utility methods that you see fit
 }
 
+// Why lifetime parameter here needed is because the current has to point
+// to node of the List and it should be movable
 pub struct ListIterator<'a, T> {
     current: &'a List<T>,
 }
@@ -103,8 +108,8 @@ mod tests {
     }
 
     #[test]
-    fn test_push() {
-        let list = List::singleton(1).push(2).push(3);
+    fn test_prepend() {
+        let list = List::singleton(1).prepend(2).prepend(3);
         assert_eq!(list, List::Node { data: 3, next: Box::new(List::Node { data: 2, next: Box::new(List::Node { data: 1, next: Box::new(List::Empty) }) }) });
     }
 
